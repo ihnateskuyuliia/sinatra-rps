@@ -1,11 +1,16 @@
 require "sinatra"
 require "sinatra/reloader" #not to shut down the server
 
-# Need this configuration for better_errors
-use(BetterErrors::Middleware)
-BetterErrors.application_root = __dir__
-BetterErrors::Middleware.allow_ip!('0.0.0.0/0.0.0.0')
+get("/rock") do
+  moves = ["rock", "paper", "scissors"]
+  @comp_move = moves.sample
 
-get("/") do
-  erb(:home)
+  if @comp_move == "rock"
+    @outcome = "tied"
+  elsif @comp_move == "paper"
+    @outcome = "lost"
+  else 
+    @outcome = "won"
+  end
+  erb(:rock)
 end
