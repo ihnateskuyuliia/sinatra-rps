@@ -1,5 +1,8 @@
 require "sinatra"
 require "sinatra/reloader" #not to shut down the server
+get("/") do
+  erb(:main_page)
+end
 
 #ROCK
 get("/rock") do
@@ -32,7 +35,6 @@ get("/paper") do
 end
 
 #SCISSORS
-#PAPER
 get("/scissors") do
   moves = ["rock", "paper", "scissors"]
   @comp_move = moves.sample
